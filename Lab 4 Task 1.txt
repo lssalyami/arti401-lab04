@@ -1,0 +1,37 @@
+?- house = house.
+true.
+Both are the same atom, so they unify.
+
+?- house = abc.
+false.
+Two different atoms cannot unify.
+
+?- edge(a,b) = edge(C,b).
+C = a.
+Same functor and arity; C unifies with a.
+
+?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+Same structure; both variables get instantiated.
+
+?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+A unifies with atom a, B unifies with structure f(g,h).
+
+?- edge(A,A) = edge(b,c).
+false.
+Same variable A cannot unify with two different atoms.
+
+?- edge(A,A) = edge(b,b).
+A = b.
+A must equal b, and b = b, so it unifies.
+
+?- A = B, B = f.
+A = B, B = f.
+A and B become linked; then B unifies with f, so both represent f.
+
+?- A = B, B = f, A = e.
+false.
+After B = f, A becomes f; then A = e fails (f ≠ e).
